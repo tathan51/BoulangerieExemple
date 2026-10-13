@@ -1,0 +1,59 @@
+@import "tailwindcss" source(".");
+
+/* Palette : crème et brun artisanal + noir espresso et or pour la touche haut de gamme */
+@theme {
+  --color-cream: #fbf7f0;
+  --color-cream-dark: #f3eadb;
+  --color-espresso: #2a1d15;
+  --color-espresso-soft: #3d2b20;
+  --color-brown: #7a4a23;
+  --color-gold: #a16207;
+  --color-gold-light: #d4a44c;
+  --color-ink-muted: #6b5a4c;
+  --color-line: #e4d6c1;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Montserrat", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-espresso antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+}
+
+/* Apparition douce des sections au défilement */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
